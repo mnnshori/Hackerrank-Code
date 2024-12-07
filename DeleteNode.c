@@ -92,22 +92,29 @@ void deleteNode(struct LinkedList* myLinkedList, int position) {
         printf("reached flag =0\n");
         printf("Error: LinkedList Underflow!");
         return;
+    
     } else if(myLinkedList->head->next == NULL) {
-        // why this code never gets executed?
 
         printf("reached flag =1\n");
-        free(myLinkedList->head);
-        return;
-    } else {
-        printf("reached flag =2\n");
+        printf("deleting %d...\n", myLinkedList->head->data);
 
+        free(myLinkedList->head);
+        (*myLinkedList).head = NULL;
+        return;
+    
+    } else {
+        
+        printf("reached flag =2\n");
         if(position == 0) {
+
             printf("deleting %d...\n", myLinkedList->head->data);
             struct Node* oldHead = myLinkedList->head;
             myLinkedList->head = myLinkedList->head->next;
             free(oldHead);
             return;
+        
         } else {
+            
             int positionCount = 0;
             struct Node* traverse = (*myLinkedList).head;
             while(positionCount != position -1) {
@@ -120,8 +127,9 @@ void deleteNode(struct LinkedList* myLinkedList, int position) {
 
             (*traverse).next = traverse->next->next;
             free(oldHead);
+            return;
+        
         }
-        return;
     }
-    return;
+    
 }
