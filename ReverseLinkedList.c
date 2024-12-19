@@ -79,13 +79,22 @@ void printList(struct LinkedList* myList) {
 }
 
 void reverseList(struct LinkedList* myList) {
-    struct Node *traverse = (*myList).head;
+    struct Node *current = (*myList).head;
+    struct Node* prev = NULL;
+    struct Node* next = NULL;
 
-    while(traverse->next->next != NULL) {
-        struct Node* backup = traverse->next;
-        traverse->next->next = traverse;
-        traverse = backup;
+    if((*myList).head == NULL) {return;}
+    if(myList->head->next == NULL) {return;}
+
+    while(current != NULL) {
+        next = current->next;
+        current->next = prev;
+        
+        prev = current;
+        current = next;
     }
+
+    (*myList).head = prev;
 
     return;
 }
