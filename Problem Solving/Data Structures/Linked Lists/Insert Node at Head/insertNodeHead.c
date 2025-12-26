@@ -16,7 +16,7 @@ struct LinkedList* createList();
 void deleteListIterative(struct LinkedList* myList);
 void printListIterative(struct LinkedList* myList);
 
-void insertNodeHeadIterative(struct LinkedList* myList, int data);
+void insertNodeHead(struct LinkedList* myList, int data);
 void clearBuffer();
 
 int main() {
@@ -44,7 +44,7 @@ int main() {
     for(int i=0; i<n; i++) {
         int temp;
         scanf("%d", &temp);
-        insertNodeHeadIterative(myList, temp);
+        insertNodeHead(myList, temp);
     }
     printListIterative(myList);
     deleteListIterative(myList);
@@ -111,7 +111,7 @@ void printListIterative(struct LinkedList* myList) {
     return;
 }
 
-void insertNodeHeadIterative(struct LinkedList* myList, int data) {
+void insertNodeHead(struct LinkedList* myList, int data) {
 
     if(myList == NULL) {
         exit(1);
@@ -131,3 +131,4 @@ void clearBuffer() {
     int n;
     while( (n = getchar()) != '\n' && n != EOF);
 }
+
