@@ -1,5 +1,3 @@
-// Friday, December 26, 2025, 17:04
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,18 +14,10 @@ struct Node* createNode(int data);
 struct LinkedList* createList();
 
 void deleteListIterative(struct LinkedList* myList);
-// void deleteListRecursive(struct LinkedList* myList);
-
-// void deleteListRecursiveHelper(struct Node* trav);
 void printListIterative(struct LinkedList* myList);
 
-// void printListRecursive(struct LinkedList* myList)
-// void printListRecursiveHelper(struct Node* trav);
-
-void insertNodeTailIterative(struct LinkedList* myList, int data);
-
+void insertNodeHeadIterative(struct LinkedList* myList, int data);
 void clearBuffer();
-
 
 int main() {
     int n = -1;
@@ -54,8 +44,7 @@ int main() {
     for(int i=0; i<n; i++) {
         int temp;
         scanf("%d", &temp);
-        //insertNodeHeadIterative(myList, temp);
-        insertNodeTailIterative(myList, temp);
+        insertNodeHeadIterative(myList, temp);
     }
     printListIterative(myList);
     deleteListIterative(myList);
@@ -104,31 +93,6 @@ void deleteListIterative(struct LinkedList* myList) {
     return;
 }
 
-// void deleteListRecursive(struct LinkedList* myList) {
-//     if(myList->head == NULL) {
-//         return;
-//     }
-
-    
-//     deleteListRecursiveHelper(myList->head);
-// }
-
-// void deleteListRecursiveHelper(struct Node* trav) {
-
-//     if(trav == NULL) {
-//         return;
-//     }
-
-//     struct Node* tempNode = trav;
-//     trav = trav->next;
-//     free(tempNode);
-//     tempNode = NULL;
-    
-//     deleteListRecursiveHelper(trav);
-// }
-
-
-
 void printListIterative(struct LinkedList* myList) {
     if(myList->head == NULL) {
         printf("Error: List is empty.\n");
@@ -147,63 +111,21 @@ void printListIterative(struct LinkedList* myList) {
     return;
 }
 
-// void printListRecursive(struct LinkedList* myList) {
-//     if(myList->head == NULL) {
-//         printf("Error: List is empty.\n");
-//     }
+void insertNodeHeadIterative(struct LinkedList* myList, int data) {
 
-//     printListRecursiveHelper(myList->head);
-// }
-
-// void printListRecursiveHelper(struct Node* trav) {
-//     if(trav == NULL) {
-//         return;
-//     }
-
-//     printf("%d", trav->data);
-//     if(trav->next == NULL) {
-//         printf("->NULL\n");
-//     } else {
-//         printf("->");
-//     }
-
-//     printListRecursiveHelper(trav->next);
-// }
-
-
-
-void insertNodeTailIterative(struct LinkedList* myList, int data) {
     if(myList == NULL) {
         exit(1);
     }
 
-    if(myList->head == NULL) {
-        myList->head = createNode(data);
-        
-        if(myList->head == NULL) {
-            exit(1);
-        }
-
-        return;
-    }
-
-    struct Node* trav = myList->head;
-    while(trav->next != NULL) {
-        trav = trav->next;
-    }
-    trav->next = createNode(data);
-    if(trav->next == NULL) {
+    struct Node* newNode = createNode(data);
+    if(newNode == NULL) {
         exit(1);
     }
+
+    newNode->next = myList->head;
+    myList->head = newNode;
     return;
 }
-
-// void insertNodeTailRecursive() {}
-
-// void insertNodeHeadIterative() {}
-
-// void insertNodeHeadRecursive() {}
-
 
 void clearBuffer() {
     int n;
