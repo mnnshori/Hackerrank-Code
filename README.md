@@ -1,2 +1,2 @@
 # Hackerrank-Code
-Repository to store my Hackerrank Code.
+Repository to store my Hackerrank code.
